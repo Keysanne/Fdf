@@ -32,11 +32,11 @@ void	colonne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 		x = pente * i;
 		x = floor(x);
 		if (pose->xb > pose->xa)
-			mlx_pixel_put(st->connexion, st->window, pose->xa + x, pose->ya + i, 0xFF0000);
+			mlx_pixel_put(st->c, st->w, pose->xa + x, pose->ya + i, couleur(alti,nextalti, i));
 		else if (pose->xb < pose->xa)
-			mlx_pixel_put(st->connexion, st->window, pose->xa - x, pose->ya + i, 0x00FF00);
+			mlx_pixel_put(st->c, st->w, pose->xa - x, pose->ya + i, couleur(alti,nextalti, i));
 		else
-			mlx_pixel_put(st->connexion, st->window, pose->xa - x, pose->ya + i, 0xFFFFFF);
+			mlx_pixel_put(st->c, st->w, pose->xa, pose->ya + i, couleur(alti,nextalti, i));
 		i++;
 	}
 }

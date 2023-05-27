@@ -27,8 +27,8 @@
 
 typedef struct	s_struc
 {
-	void	*connexion;
-	void	*window;
+	void	*c;
+	void	*w;
 	int	x;
 	int	y;
 	int	taille_x;
@@ -50,6 +50,7 @@ typedef struct	s_position
 void	window(t_struc *info);
 int	**recup_map(char *str, t_struc *info);
 int	**ecrire_map(char *str, t_struc *info);
+int	couleur(int alti, int nextalti, int i);
 void	dessin(t_struc *info);
 void	dessin_colonne(t_struc *info);
 

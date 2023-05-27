@@ -24,9 +24,9 @@ void	clear_leaks(t_struc *info)
 		i++;
 	}
 	free(info->map);
-	mlx_destroy_window(info->connexion, info->window);
-	mlx_destroy_display(info->connexion);
-	free(info->connexion);
+	mlx_destroy_window(info->c, info->w);
+	mlx_destroy_display(info->c);
+	free(info->c);
 }
 
 int	key_event(int x, t_struc *info)
@@ -47,12 +47,12 @@ int	close_button(t_struc *info)
 
 void	window(t_struc *info)
 {
-	info->connexion = mlx_init();
-	info->window = mlx_new_window(info->connexion, 1920, 995, "Fdf");
+	info->c = mlx_init();
+	info->w = mlx_new_window(info->c, 1920, 995, "Fdf");
 	dessin(info);
-	mlx_key_hook(info->window, key_event, info);
-	mlx_hook(info->window, 17, 1L << 1, close_button, info);
-	mlx_loop(info->connexion);
+	mlx_key_hook(info->w, key_event, info);
+	mlx_hook(info->w, 17, 1L << 1, close_button, info);
+	mlx_loop(info->c);
 }
 
 int	main(int argc, char **argv)
