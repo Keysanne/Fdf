@@ -25,6 +25,7 @@ void	clear_leaks(t_struc *info)
 	}
 	free(info->map);
 	mlx_destroy_window(info->c, info->w);
+	mlx_destroy_image(info->c, info->i);
 	mlx_destroy_display(info->c);
 	free(info->c);
 }
@@ -49,7 +50,10 @@ void	window(t_struc *info)
 {
 	info->c = mlx_init();
 	info->w = mlx_new_window(info->c, 1920, 995, "Fdf");
+	info->i = mlx_new_image (info->c, 1920, 995);
+	info->i_addr = mlx_get_data_addr(info->i, &info->bpp, &info->ll, &info->e);
 	dessin(info);
+	mlx_put_image_to_window(info->c, info->w, info->i, 0, 0);
 	mlx_key_hook(info->w, key_event, info);
 	mlx_hook(info->w, 17, 1L << 1, close_button, info);
 	mlx_loop(info->c);
@@ -57,8 +61,8 @@ void	window(t_struc *info)
 
 int	main(int argc, char **argv)
 {
-	t_struc info;
-	int	fd;
+	t_struc	info;
+	int		fd;
 
 	if (argc == 2)
 	{

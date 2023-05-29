@@ -17,7 +17,7 @@ void	zap_couleur(const char *nptr, int *i)
 	if (nptr[*i] == ',' && nptr[*i + 1] == '0' && nptr[*i + 2] == 'x')
 	{
 		while (nptr[*i] != ' ')
-		(*i)++;
+			(*i)++;
 	}
 }
 
@@ -28,7 +28,7 @@ int	ft_atoi(const char *nptr, int *i)
 
 	cpt = 0;
 	rst = 0;
-	while (nptr[*i] == '\n'|| nptr[*i] == ' ')
+	while (nptr[*i] == '\n' || nptr[*i] == ' ')
 		(*i)++;
 	if (nptr[*i] == '-' || nptr[*i] == '+')
 	{
@@ -52,9 +52,9 @@ int	**ecrire_map(char *str, t_struc *info)
 	int		x;
 	int		y;
 	int		i;
-	int	**tab;
+	int		**tab;
 
-	tab = malloc((info->y + 1) * sizeof(int*));
+	tab = malloc((info->y + 1) * sizeof(int *));
 	if (!tab)
 		return (NULL);
 	i = 0;

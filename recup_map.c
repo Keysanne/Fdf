@@ -50,10 +50,10 @@ int	nb_case(char *str)
 
 int	**recup_map(char *str, t_struc *info)
 {
-	int	**tab;
-	int	fd;
-	int	ret;
+	int		**tab;
 	char	*buf;
+	int		fd;
+	int		ret;
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)

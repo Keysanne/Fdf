@@ -13,7 +13,7 @@
 #include "fdf.h"
 #include "mlx.h"
 
-void	ligne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
+void	ligne_pente(t_struc *st, t_position *p, int a, int na)
 {
 	int		i;
 	float	x;
@@ -21,8 +21,8 @@ void	ligne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 	float	dy;
 	float	pente;
 
-	dx = pose->xb - pose->xa;
-	dy = pose->yb - pose->ya;
+	dx = p->xb - p->xa;
+	dy = p->yb - p->ya;
 	pente = dy / dx;
 	if (pente < 0)
 		pente = -pente;
@@ -31,12 +31,12 @@ void	ligne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 	{	
 		x = pente * i;
 		x = floor(x);
-		if (pose->yb > pose->ya)
-			mlx_pixel_put(st->c, st->w, pose->xa + i, pose->ya + x, couleur(alti,nextalti, i));
-		else if (pose->yb < pose->ya)
-			mlx_pixel_put(st->c, st->w, pose->xa + i, pose->ya - x, couleur(alti,nextalti, i));
+		if (p->yb > p->ya)
+			my_mlx_pixel_put(st, p->xa + i, p->ya + x, c(a, na, i));
+		else if (p->yb < p->ya)
+			my_mlx_pixel_put(st, p->xa + i, p->ya - x, c(a, na, i));
 		else
-			mlx_pixel_put(st->c, st->w, pose->xa + i, pose->ya, couleur(alti,nextalti, i));
+			my_mlx_pixel_put(st, p->xa + i, p->ya, c(a, na, i));
 		i++;
 	}
 }

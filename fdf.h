@@ -25,33 +25,39 @@
 #  define BUFFER_SIZE 5
 # endif
 
-typedef struct	s_struc
+typedef struct s_struc
 {
 	void	*c;
 	void	*w;
-	int	x;
-	int	y;
-	int	taille_x;
-	int	taille_y;
-	int	e_x;
-	int	e_y;
-	int	**map;
+	void	*i;
+	char	*i_addr;
+	int		bpp;
+	int		ll;
+	int		e;
+	int		x;
+	int		y;
+	int		taille_x;
+	int		taille_y;
+	int		e_x;
+	int		e_y;
+	int		**map;
 }		t_struc;
 
-typedef struct	s_position
+typedef struct s_position
 {
-	int	xa;
-	int	ya;
-	int	xb;
-	int	yb;
+	int		xa;
+	int		ya;
+	int		xb;
+	int		yb;
 	float	pente;
 }		t_position;
 
 void	window(t_struc *info);
-int	**recup_map(char *str, t_struc *info);
-int	**ecrire_map(char *str, t_struc *info);
-int	couleur(int alti, int nextalti, int i);
+int		**recup_map(char *str, t_struc *info);
+int		**ecrire_map(char *str, t_struc *info);
+int		c(int alti, int nextalti, int i);
 void	dessin(t_struc *info);
+void	my_mlx_pixel_put(t_struc *info, int x, int y, int color);
 void	dessin_colonne(t_struc *info);
 
 #endif

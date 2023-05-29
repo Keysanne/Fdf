@@ -13,7 +13,7 @@
 #include "mlx.h"
 #include "fdf.h"
 
-void	colonne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
+void	colonne_pente(t_struc *st, t_position *p, int a, int na)
 {
 	int		i;
 	float	x;
@@ -21,9 +21,9 @@ void	colonne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 	float	dy;
 	float	pente;
 
-	dx = pose->xb - pose->xa;
-	dy = pose->yb - pose->ya;
-	pente = dx /dy;
+	dx = p->xb - p->xa;
+	dy = p->yb - p->ya;
+	pente = dx / dy;
 	if (pente < 0)
 		pente = -pente;
 	i = 0;
@@ -31,12 +31,12 @@ void	colonne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 	{
 		x = pente * i;
 		x = floor(x);
-		if (pose->xb > pose->xa)
-			mlx_pixel_put(st->c, st->w, pose->xa + x, pose->ya + i, couleur(alti,nextalti, i));
-		else if (pose->xb < pose->xa)
-			mlx_pixel_put(st->c, st->w, pose->xa - x, pose->ya + i, couleur(alti,nextalti, i));
+		if (p->xb > p->xa)
+			my_mlx_pixel_put(st, p->xa + x, p->ya + i, c(a, na, i));
+		else if (p->xb < p->xa)
+			my_mlx_pixel_put(st, p->xa - x, p->ya + i, c(a, na, i));
 		else
-			mlx_pixel_put(st->c, st->w, pose->xa, pose->ya + i, couleur(alti,nextalti, i));
+			my_mlx_pixel_put(st, p->xa, p->ya + i, c(a, na, i));
 		i++;
 	}
 }
@@ -44,7 +44,7 @@ void	colonne_pente(t_struc *st, t_position *pose, int alti, int nextalti)
 void	colonne(t_struc *info, t_position *pose, int alti, int nextalti)
 {
 	pose->yb = pose->ya + info->e_y * alti + info->taille_y;
-	pose->yb -= info->e_y * nextalti;	
+	pose->yb -= info->e_y * nextalti;
 	pose->xb = pose->xa - info->e_x * alti;
 	pose->xb += info->e_x * nextalti;
 	colonne_pente(info, pose, alti, nextalti);
@@ -64,7 +64,7 @@ void	dessin_colonne(t_struc *info)
 		j = 0;
 		pose.xa = 400 + info->e_x * info->map[j][i] + info->taille_x * i;
 		pose.ya = 100 - info->e_y * info->map[j][i];
-		while(j < info->y - 1)
+		while (j < info->y - 1)
 		{
 			colonne(info, &pose, info->map[j][i], info->map[j + 1][i]);
 			j++;
